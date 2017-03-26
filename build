@@ -1,0 +1,11 @@
+#!/bin/sh
+
+docker run \
+	-v $(pwd):/app \
+	-e CGO_ENABLED=0 \
+	-e GOOS=linux \
+	-e GOARCH=amd64 \
+	--rm golang:1.8 sh -c \
+	"go get gopl.io/ch7/surface && cp $GOPATH/bin/surface"
+
+docker build --rm=true -t fbcbarbosa/surface .
