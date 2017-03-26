@@ -1,6 +1,6 @@
-FROM centurylink/ca-certs
+FROM scratch
 
 ADD surface /bin/
 
-EXPOSE 8080
+EXPOSE 8000
 ENTRYPOINT ["/bin/surface"]

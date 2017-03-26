@@ -1,11 +1,12 @@
-#!/bin/sh
+#!/bin/sh -ex
 
 docker run \
-	-v $(pwd):/app \
+	-v $(pwd):/go/src/surface \
+	-w /go/src/surface \
 	-e CGO_ENABLED=0 \
 	-e GOOS=linux \
 	-e GOARCH=amd64 \
 	--rm golang:1.8 sh -c \
-	"go get gopl.io/ch7/surface && cp $GOPATH/bin/surface"
+	"go get -v && go build -v"
 
 docker build --rm=true -t fbcbarbosa/surface .
